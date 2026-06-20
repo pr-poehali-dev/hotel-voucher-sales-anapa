@@ -45,8 +45,8 @@ const Index = () => {
       <div className="bg-primary text-primary-foreground text-sm">
         <div className="container flex flex-wrap items-center justify-between gap-2 py-2">
           <div className="flex items-center gap-6">
-            <a href="mailto:info@chekgarant-anapa.ru" className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
-              <Icon name="Mail" size={14} /> info@chekgarant-anapa.ru
+            <a href="mailto:a9990064045@mail.ru" className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+              <Icon name="Mail" size={14} /> a9990064045@mail.ru
             </a>
             <span className="hidden md:flex items-center gap-1.5 text-white/70">
               <Icon name="MapPin" size={14} /> Анапа и другие города
@@ -209,8 +209,8 @@ const Index = () => {
                 <a href="tel:+79990064045" className="flex items-center gap-2 text-primary font-600 hover:text-accent transition-colors">
                   <Icon name="Phone" size={16} className="text-accent" />+7 (999) 006-40-45
                 </a>
-                <a href="mailto:info@chekgarant-anapa.ru" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                  <Icon name="Mail" size={16} className="text-accent" />info@chekgarant-anapa.ru
+                <a href="mailto:a9990064045@mail.ru" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                  <Icon name="Mail" size={16} className="text-accent" />a9990064045@mail.ru
                 </a>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Icon name="MapPin" size={16} className="text-accent" />г. Анапа и другие города
@@ -352,8 +352,8 @@ const Index = () => {
               <a href="tel:+79990064045" className="flex items-center gap-2 text-white font-600 hover:text-accent transition-colors">
                 <Icon name="Phone" size={16} className="text-accent" />+7 (999) 006-40-45
               </a>
-              <a href="mailto:info@chekgarant-anapa.ru" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
-                <Icon name="Mail" size={16} className="text-accent" />info@chekgarant-anapa.ru
+              <a href="mailto:a9990064045@mail.ru" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+                <Icon name="Mail" size={16} className="text-accent" />a9990064045@mail.ru
               </a>
               <Button className="mt-2 bg-accent text-accent-foreground hover:bg-accent/90 font-600" asChild>
                 <a href="#order">Онлайн заказ</a>
