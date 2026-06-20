@@ -22,7 +22,11 @@ const Index = () => {
             <a href="#samples" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Образцы</a>
             <a href="#contacts" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Контакты</a>
           </nav>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <a href="tel:+79990064045" className="hidden items-center gap-2 font-display font-600 text-primary hover:text-accent transition-colors md:flex">
+            <Icon name="Phone" size={16} />
+            +7 (999) 006-40-45
+          </a>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 md:hidden">
             <Icon name="Phone" size={16} className="mr-2" /> Связаться
           </Button>
         </div>
