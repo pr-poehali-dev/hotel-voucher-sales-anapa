@@ -374,6 +374,15 @@ const Index = () => {
         </div>
       </footer>
 
+      {/* Floating call button */}
+      <a
+        href="tel:+79990064045"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-accent-foreground shadow-xl hover:bg-accent/90 transition-all hover:scale-105 font-600 text-sm"
+      >
+        <Icon name="Phone" size={20} />
+        Позвонить
+      </a>
+
     </div>
   );
 };
