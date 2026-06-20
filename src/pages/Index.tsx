@@ -19,6 +19,7 @@ const Index = () => {
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             <a href="#how" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Как это работает</a>
+            <a href="#samples" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Образцы</a>
             <a href="#contacts" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Контакты</a>
           </nav>
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -84,6 +85,63 @@ const Index = () => {
                 </div>
                 <h3 className="mb-2 font-display text-xl font-600 text-primary">{s.title}</h3>
                 <p className="text-muted-foreground">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Samples */}
+      <section id="samples" className="py-20 bg-secondary/40">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <span className="font-display text-sm font-600 uppercase tracking-widest text-accent">Наглядные примеры</span>
+            <h2 className="mt-2 font-display text-3xl font-700 uppercase text-primary md:text-4xl">Образцы гостиничных чеков</h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">Ниже представлены примеры документов, которые мы оформляем. Все чеки соответствуют требованиям бухгалтерской отчётности.</p>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/52a9ca68-8e88-446f-a52a-8234182ea751.jpg',
+                type: 'Отель',
+                title: 'Гостиничный чек (отель)',
+                features: ['Кассовый чек', 'Счёт-фактура', 'Печать и подпись', 'Данные гостя'],
+              },
+              {
+                img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/1dd2770d-aed2-43f0-b7d9-befdeb0ba651.jpg',
+                type: 'Санаторий',
+                title: 'Чек санатория',
+                features: ['Путёвка', 'Медицинская справка', 'Печать учреждения', 'Лечебные услуги'],
+              },
+              {
+                img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/9f16b4f8-ce44-4ef4-a2d0-3068729ca509.jpg',
+                type: 'Пансионат',
+                title: 'Чек пансионата',
+                features: ['Договор проживания', 'Квитанция об оплате', 'Печать и подпись', 'Полный пакет'],
+              },
+            ].map((s) => (
+              <div key={s.title} className="rounded-xl border border-border bg-card overflow-hidden shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative overflow-hidden h-56 bg-muted">
+                  <img src={s.img} alt={s.title} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-primary text-primary-foreground font-500">{s.type}</Badge>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-600 text-primary">{s.title}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {s.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Icon name="CheckCircle2" size={16} className="text-accent shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="mt-6 w-full bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                    <a href="#contacts">Заказать такой чек</a>
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
