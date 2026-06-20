@@ -3,7 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/1b4f069e-ee4c-4c48-b397-eb0c8173d644.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/9c55a72e-8db7-4f0f-9133-153f82ea8a63.jpg';
 
 const CITIES = [
   'Абакан','Азов','Анапа','Ангарск','Армавир','Астрахань','Барнаул','Белгород','Брянск','Великий Новгород',
