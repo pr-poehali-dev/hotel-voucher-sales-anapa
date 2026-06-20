@@ -1,4 +1,3 @@
-import { useState, useMemo } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,41 +5,7 @@ import { Badge } from '@/components/ui/badge';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/57eafb98-1df7-45d7-a225-ffc3d3b5fb26.jpg';
 
-type Receipt = {
-  id: number;
-  hotel: string;
-  category: string;
-  stars: number;
-  nights: number;
-  guests: number;
-  amount: number;
-  period: string;
-};
-
-const RECEIPTS: Receipt[] = [
-  { id: 1, hotel: 'Гранд Отель Валентина', category: 'Отель', stars: 5, nights: 7, guests: 2, amount: 84500, period: 'Июнь 2025' },
-  { id: 2, hotel: 'Пансионат Жемчужина моря', category: 'Пансионат', stars: 4, nights: 10, guests: 3, amount: 96000, period: 'Июль 2025' },
-  { id: 3, hotel: 'Санаторий Анапа-Океан', category: 'Санаторий', stars: 4, nights: 14, guests: 2, amount: 128000, period: 'Август 2025' },
-  { id: 4, hotel: 'Гостевой дом Бриз', category: 'Гостевой дом', stars: 3, nights: 5, guests: 4, amount: 38500, period: 'Июнь 2025' },
-  { id: 5, hotel: 'Отель Riviera Beach', category: 'Отель', stars: 5, nights: 6, guests: 2, amount: 72000, period: 'Сентябрь 2025' },
-  { id: 6, hotel: 'Пансионат Золотой берег', category: 'Пансионат', stars: 3, nights: 8, guests: 2, amount: 52000, period: 'Июль 2025' },
-];
-
-const CATEGORIES = ['Все', 'Отель', 'Пансионат', 'Санаторий', 'Гостевой дом'];
-
 const Index = () => {
-  const [query, setQuery] = useState('');
-  const [category, setCategory] = useState('Все');
-
-  const filtered = useMemo(() => {
-    return RECEIPTS.filter((r) => {
-      const q = query.trim().toLowerCase();
-      const matchQuery = !q || r.hotel.toLowerCase().includes(q) || r.category.toLowerCase().includes(q) || r.period.toLowerCase().includes(q);
-      const matchCat = category === 'Все' || r.category === category;
-      return matchQuery && matchCat;
-    });
-  }, [query, category]);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -53,7 +18,6 @@ const Index = () => {
             <span className="font-display text-xl font-700 uppercase tracking-wide text-primary">ЧекГарант</span>
           </a>
           <nav className="hidden items-center gap-8 md:flex">
-            <a href="#catalog" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Каталог</a>
             <a href="#how" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Как это работает</a>
             <a href="#contacts" className="text-sm font-500 text-muted-foreground transition-colors hover:text-primary">Контакты</a>
           </nav>
@@ -82,7 +46,7 @@ const Index = () => {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-                <a href="#catalog"><Icon name="Search" size={18} className="mr-2" /> Перейти в каталог</a>
+                <a href="#contacts"><Icon name="FileText" size={18} className="mr-2" /> Оставить заявку</a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white" asChild>
                 <a href="#how">Как это работает</a>
@@ -123,82 +87,6 @@ const Index = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Catalog */}
-      <section id="catalog" className="py-20">
-        <div className="container">
-          <div className="mb-10">
-            <span className="font-display text-sm font-600 uppercase tracking-widest text-accent">Актуальные предложения</span>
-            <h2 className="mt-2 font-display text-3xl font-700 uppercase text-primary md:text-4xl">Каталог гостиничных чеков</h2>
-          </div>
-
-          {/* Search & filters */}
-          <div className="mb-8 rounded-lg border border-border bg-card p-5 shadow-sm">
-            <div className="relative">
-              <Icon name="Search" size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Поиск по названию отеля, типу или периоду..."
-                className="h-12 pl-11 text-base"
-              />
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {CATEGORIES.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setCategory(c)}
-                  className={`rounded-full px-4 py-2 text-sm font-500 transition-colors ${
-                    category === c
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-secondary text-secondary-foreground hover:bg-muted'
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Results */}
-          {filtered.length === 0 ? (
-            <div className="rounded-lg border border-dashed border-border py-20 text-center text-muted-foreground">
-              <Icon name="SearchX" size={40} className="mx-auto mb-3 opacity-50" />
-              По вашему запросу ничего не найдено
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filtered.map((r) => (
-                <div key={r.id} className="group flex flex-col rounded-lg border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl animate-scale-in">
-                  <div className="mb-4 flex items-start justify-between">
-                    <Badge variant="secondary" className="font-500">{r.category}</Badge>
-                    <div className="flex items-center gap-0.5 text-accent">
-                      {Array.from({ length: r.stars }).map((_, i) => (
-                        <Icon key={i} name="Star" size={14} className="fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                  <h3 className="font-display text-xl font-600 leading-snug text-primary">{r.hotel}</h3>
-                  <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center gap-2 text-muted-foreground"><Icon name="Moon" size={16} /> {r.nights} ночей</div>
-                    <div className="flex items-center gap-2 text-muted-foreground"><Icon name="Users" size={16} /> {r.guests} гостя</div>
-                    <div className="col-span-2 flex items-center gap-2 text-muted-foreground"><Icon name="Calendar" size={16} /> {r.period}</div>
-                  </div>
-                  <div className="mt-6 flex items-end justify-between border-t border-border pt-4">
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground">Сумма чека</div>
-                      <div className="font-display text-2xl font-700 text-primary">{r.amount.toLocaleString('ru-RU')} ₽</div>
-                    </div>
-                    <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                      Заказать
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
