@@ -44,8 +44,8 @@ const Index = () => {
       <div className="bg-primary text-primary-foreground text-sm">
         <div className="container flex flex-wrap items-center justify-between gap-2 py-2">
           <div className="flex items-center gap-6">
-            <a href="mailto:a9990064045@mail.ru" className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
-              <Icon name="Mail" size={14} /> a9990064045@mail.ru
+            <a href="tel:+79990064045" className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+              <Icon name="Phone" size={14} /> +7 (999) 006-40-45
             </a>
             <span className="hidden md:flex items-center gap-1.5 text-white/70">
               <Icon name="MapPin" size={14} /> Анапа и другие города
