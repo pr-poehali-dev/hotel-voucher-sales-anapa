@@ -107,7 +107,7 @@ const Index = () => {
                 <span>от <b>30</b> до <b>100 тыс. руб.</b> в одном чеке</span>
               </div>
             </div>
-            <p className="mt-6 max-w-xl text-white/75 leading-relaxed">
+            <p className="mt-6 max-w-xl text-white/75 leading-relaxed text-lg">
               Сотрудникам предприятий часто приходится направляться в деловые поездки. Мы поможем оформить гостиничные чеки с подтверждением для авансового отчёта о командировке. Официально, быстро и надёжно.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
