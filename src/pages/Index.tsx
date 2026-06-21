@@ -27,8 +27,15 @@ const STEPS = [
 ];
 
 const CATALOG = [
-  'Кассовые чеки', 'Товарные чеки', 'Гостиничные чеки', 'Ресторанные чеки',
-  'Счета-фактуры', 'Чеки АЗС', 'Чеки на стройматериалы', 'Акты выполненных работ', 'Почтовые чеки',
+  { name: 'Кассовые чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/dfb78967-bace-4005-bd2f-c9c2892226e8.jpg' },
+  { name: 'Товарные чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/70a1594f-232a-4cd9-8b1d-3e89a0c5324c.jpg' },
+  { name: 'Гостиничные чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/eaa43569-2dc0-4b19-9ffc-980bae491f21.jpg' },
+  { name: 'Ресторанные чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/0e81b8fc-8f47-46d0-ba0a-1d0d7a629e54.jpg' },
+  { name: 'Счета-фактуры', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/a992d67d-0c9a-4541-95a8-bb147eb1f379.jpg' },
+  { name: 'Чеки АЗС', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/98559993-1a62-4e01-b162-b3eb363d12f0.jpg' },
+  { name: 'Чеки на стройматериалы', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/5727fd5e-4280-49a8-bb7b-939f35e0cd0a.jpg' },
+  { name: 'Акты выполненных работ', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/0e63723b-14b0-4354-aa91-261b42811aef.jpg' },
+  { name: 'Почтовые чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/cd97999b-3b1b-42ce-8ce3-5f5263c019ad.jpg' },
 ];
 
 const Index = () => {
@@ -37,6 +44,7 @@ const Index = () => {
   const [email, setEmail] = useState('');
   const [agree, setAgree] = useState(false);
   const [contact, setContact] = useState('');
+  const [modalItem, setModalItem] = useState<{ name: string; img: string } | null>(null);
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -189,11 +197,11 @@ const Index = () => {
               <div className="font-display text-sm font-600 uppercase tracking-wider text-muted-foreground mb-3">Каталог</div>
               <ul className="space-y-1">
                 {CATALOG.map((item) => (
-                  <li key={item}>
-                    <a href="#order" className={`flex items-center gap-2 rounded px-3 py-2 text-sm transition-colors ${item === 'Гостиничные чеки' ? 'bg-primary text-primary-foreground font-600' : 'text-foreground hover:bg-muted'}`}>
-                      <Icon name="ChevronRight" size={14} className={item === 'Гостиничные чеки' ? 'text-accent' : 'text-muted-foreground'} />
-                      {item}
-                    </a>
+                  <li key={item.name}>
+                    <button onClick={() => setModalItem(item)} className={`w-full flex items-center gap-2 rounded px-3 py-2 text-sm transition-colors text-left ${item.name === 'Гостиничные чеки' ? 'bg-primary text-primary-foreground font-600' : 'text-foreground hover:bg-muted'}`}>
+                      <Icon name="ChevronRight" size={14} className={item.name === 'Гостиничные чеки' ? 'text-accent' : 'text-muted-foreground'} />
+                      {item.name}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -330,7 +338,7 @@ const Index = () => {
             <div className="font-display text-sm font-600 uppercase tracking-widest text-accent mb-4">Каталог</div>
             <ul className="space-y-1.5 text-sm">
               {CATALOG.map(item => (
-                <li key={item}><a href="#order" className="text-white/70 hover:text-white transition-colors">{item}</a></li>
+                <li key={item.name}><a href="#order" className="text-white/70 hover:text-white transition-colors">{item.name}</a></li>
               ))}
             </ul>
           </div>
@@ -378,6 +386,26 @@ const Index = () => {
         <Icon name="Phone" size={20} />
         Позвонить
       </a>
+
+      {/* Modal */}
+      {modalItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70" onClick={() => setModalItem(null)}>
+          <div className="relative max-w-lg w-full bg-card rounded-xl overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
+            <img src={modalItem.img} alt={modalItem.name} className="w-full object-cover max-h-[60vh]" />
+            <div className="p-5 flex items-center justify-between">
+              <h3 className="font-display text-xl font-700 uppercase text-primary">{modalItem.name}</h3>
+              <div className="flex gap-3">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-600" asChild>
+                  <a href="#order" onClick={() => setModalItem(null)}>Заказать</a>
+                </Button>
+                <button onClick={() => setModalItem(null)} className="rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:bg-muted transition-colors">
+                  Закрыть
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
