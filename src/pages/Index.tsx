@@ -60,8 +60,14 @@ const Index = () => {
               <Icon name="MapPin" size={14} /> Анапа и другие города
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a href="tel:+79990064045" className="font-600 text-accent">+7 (999) 006-40-45</a>
+            <a href="https://wa.me/79990064045" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-green-500/50 px-3 py-1 text-green-400 hover:bg-green-500 hover:text-white transition-colors text-xs font-500">
+              <Icon name="MessageCircle" size={13} /> WhatsApp
+            </a>
+            <a href="https://t.me/+79990064045" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-sky-400/50 px-3 py-1 text-sky-400 hover:bg-sky-500 hover:text-white transition-colors text-xs font-500">
+              <Icon name="Send" size={13} /> Telegram
+            </a>
             <button className="rounded border border-accent/50 px-3 py-1 text-accent hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-500">
               Заказать звонок
             </button>
