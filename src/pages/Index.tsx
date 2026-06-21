@@ -183,8 +183,7 @@ const Index = () => {
 
             <div className="rounded-lg border border-accent/30 bg-accent/5 p-6">
               <div className="font-display text-lg font-700 text-primary mb-1">Стоимость</div>
-              <div className="text-3xl font-display font-700 text-accent">5% <span className="text-base text-muted-foreground font-400">от суммы чека</span></div>
-              <div className="mt-2 text-sm text-muted-foreground">от 30 000 до 100 000 руб. в одном чеке</div>
+              <div className="text-3xl font-display font-700 text-accent">12% <span className="text-base text-muted-foreground font-400">от суммы чека</span></div>
               <Button className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
                 <a href="#order">Купить</a>
               </Button>
