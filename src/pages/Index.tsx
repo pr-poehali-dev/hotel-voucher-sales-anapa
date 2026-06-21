@@ -1,20 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { CITIES } from '@/data/cities';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/9c55a72e-8db7-4f0f-9133-153f82ea8a63.jpg';
-
-const CITIES = [
-  'Абакан','Азов','Анапа','Ангарск','Армавир','Астрахань','Барнаул','Белгород','Брянск','Великий Новгород',
-  'Владивосток','Владикавказ','Владимир','Волгоград','Вологда','Воронеж','Грозный','Екатеринбург','Иваново',
-  'Ижевск','Иркутск','Казань','Калининград','Калуга','Кемерово','Кострома','Краснодар','Красноярск',
-  'Курган','Курск','Липецк','Магнитогорск','Махачкала','Москва','Мурманск','Набережные Челны','Нижний Новгород',
-  'Новокузнецк','Новосибирск','Омск','Оренбург','Орёл','Пенза','Пермь','Петрозаводск','Псков',
-  'Ростов-на-Дону','Рязань','Самара','Санкт-Петербург','Саранск','Саратов','Смоленск','Сочи',
-  'Ставрополь','Сургут','Тамбов','Тверь','Тольятти','Томск','Тула','Тюмень','Улан-Удэ',
-  'Ульяновск','Уфа','Хабаровск','Чебоксары','Челябинск','Элиста','Ярославль',
-];
 
 const STEPS = [
   { icon: 'MessageCircle', title: 'Связываетесь с нами', text: 'Вы можете связаться с нами по контактам, указанным на сайте.' },
@@ -356,7 +347,9 @@ const Index = () => {
           <h2 className="font-display text-xl font-700 uppercase text-primary mb-6">Гостиничные чеки в регионах РФ</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2">
             {CITIES.map(city => (
-              <a key={city} href="#order" className="text-sm text-muted-foreground hover:text-primary transition-colors">{city}</a>
+              <Link key={city.slug} to={`/cities/${city.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                {city.name}
+              </Link>
             ))}
           </div>
         </div>
