@@ -100,11 +100,7 @@ const Index = () => {
             <div className="mt-6 flex flex-wrap gap-4 text-white/90 text-base">
               <div className="flex items-center gap-2 bg-white/10 rounded px-4 py-2">
                 <Icon name="Percent" size={18} className="text-accent" />
-                <span><b>5%</b> от суммы чека</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 rounded px-4 py-2">
-                <Icon name="Banknote" size={18} className="text-accent" />
-                <span>от <b>30</b> до <b>100 тыс. руб.</b> в одном чеке</span>
+                <span>Наша комиссия <b>12%</b> от суммы чека</span>
               </div>
             </div>
             <p className="mt-6 max-w-xl text-white/75 leading-relaxed text-lg">
