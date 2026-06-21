@@ -324,6 +324,32 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Map */}
+      <section className="border-t border-border py-14">
+        <div className="container">
+          <div className="mb-6 text-center">
+            <span className="font-display text-sm font-600 uppercase tracking-widest text-accent">Наш адрес</span>
+            <h2 className="mt-2 font-display text-3xl font-700 uppercase text-primary">Мы на карте</h2>
+            <p className="mt-2 text-muted-foreground flex items-center justify-center gap-2">
+              <Icon name="MapPin" size={16} className="text-accent" />
+              г. Анапа, Анапское шоссе, 14
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border shadow-md">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.0!2d37.3167!3d44.8957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f0f5c3e1b1b1b1%3A0x0!2z0JDQvdCw0L_RgdC60L7QtSDRiNC-0YHRgdC1IDE0LCDQkNC90LDQv9CwLCDQmtGA0LDRgdC90L7QtNCw0YDRgdC60LjQuSDQutGA0LDQuQ!5e0!3m2!1sru!2sru!4v1700000000000!5m2!1sru!2sru"
+              width="100%"
+              height="420"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Мы на карте — Анапа, Анапское шоссе 14"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Cities */}
       <section className="border-t border-border py-12 bg-secondary/30">
         <div className="container">
