@@ -282,14 +282,21 @@ const CityPage = () => {
         </div>
       </footer>
 
-      {/* Floating call button */}
-      <a
-        href="tel:+79990064045"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-accent-foreground shadow-xl hover:bg-accent/90 transition-all hover:scale-105 font-600 text-sm"
-      >
-        <Icon name="Phone" size={20} />
-        Позвонить
-      </a>
+      {/* Floating buttons */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+        <a href="https://wa.me/79990064045" target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full bg-green-500 px-4 py-3 text-white shadow-xl hover:bg-green-600 transition-all hover:scale-105 font-600 text-sm">
+          <Icon name="MessageCircle" size={20} /> WhatsApp
+        </a>
+        <a href="https://t.me/+79990064045" target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-full bg-sky-500 px-4 py-3 text-white shadow-xl hover:bg-sky-600 transition-all hover:scale-105 font-600 text-sm">
+          <Icon name="Send" size={20} /> Telegram
+        </a>
+        <a href="tel:+79990064045"
+          className="flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-accent-foreground shadow-xl hover:bg-accent/90 transition-all hover:scale-105 font-600 text-sm">
+          <Icon name="Phone" size={20} /> Позвонить
+        </a>
+      </div>
 
     </div>
   );
