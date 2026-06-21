@@ -391,14 +391,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary/95 border-t border-white/10 py-4">
-        <div className="container flex flex-col items-center justify-between gap-2 text-xs text-white/50 sm:flex-row">
-          <div className="flex items-center gap-2">
-            <Icon name="ShieldCheck" size={16} className="text-accent" />
-            <span className="font-display font-600 uppercase tracking-wide text-white/70">ЧекГарант Анапа</span>
+      {/* Footer cities */}
+      <footer className="bg-primary/95 border-t border-white/10 py-10">
+        <div className="container">
+          <div className="mb-6">
+            <div className="font-display text-sm font-600 uppercase tracking-widest text-accent mb-4">Гостиничные чеки по городам России</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-2">
+              {CITIES.map(city => (
+                <Link key={city.slug} to={`/cities/${city.slug}`} className="text-xs text-white/50 hover:text-white transition-colors">
+                  {city.name}
+                </Link>
+              ))}
+            </div>
           </div>
-          <span>© 2026 Действительные чеки в Анапе</span>
+          <div className="border-t border-white/10 pt-4 flex flex-col items-center justify-between gap-2 text-xs text-white/50 sm:flex-row">
+            <div className="flex items-center gap-2">
+              <Icon name="ShieldCheck" size={16} className="text-accent" />
+              <span className="font-display font-600 uppercase tracking-wide text-white/70">ЧекГарант Анапа</span>
+            </div>
+            <span>© 2026 Действительные чеки в Анапе</span>
+          </div>
         </div>
       </footer>
 
