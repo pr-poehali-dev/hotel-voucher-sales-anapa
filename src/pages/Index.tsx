@@ -52,7 +52,6 @@ const Index = () => {
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <a href="tel:+79990064045" className="font-600 text-accent">+7 (999) 006-40-45</a>
             <a href="https://wa.me/79990064045" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-green-500/50 px-3 py-1 text-green-400 hover:bg-green-500 hover:text-white transition-colors text-xs font-500">
               <Icon name="MessageCircle" size={13} /> WhatsApp
             </a>
