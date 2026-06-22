@@ -36,6 +36,7 @@ const CityPage = () => {
   const [phone, setPhone] = useState('');
   const [agree, setAgree] = useState(false);
   const [contact, setContact] = useState('');
+  const [product, setProduct] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [sendError, setSendError] = useState('');
@@ -47,11 +48,11 @@ const CityPage = () => {
       const res = await fetch('https://functions.poehali.dev/f7bc5056-5d3a-4553-8128-4067e8082b88', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, contact, city: city?.name || '' }),
+        body: JSON.stringify({ name, phone, contact, product, city: city?.name || '' }),
       });
       if (res.ok) {
         setSent(true);
-        setName(''); setPhone(''); setContact(''); setAgree(false);
+        setName(''); setPhone(''); setContact(''); setAgree(false); setProduct('');
       } else {
         setSendError('Ошибка отправки. Попробуйте ещё раз.');
       }
@@ -277,6 +278,18 @@ const CityPage = () => {
               <div>
                 <label className="mb-1.5 block text-sm font-500 text-foreground">Ваш телефон <span className="text-destructive">*</span></label>
                 <Input value={phone} onChange={e => setPhone(e.target.value)} placeholder="+7 (___) ___-__-__" className="h-11" />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-500 text-foreground">Что вас интересует?</label>
+                <div className="flex flex-wrap gap-2">
+                  {['Кассовые чеки', 'Товарные чеки', 'Гостиничные чеки', 'Ресторанные чеки', 'Счета-фактуры', 'Чеки АЗС', 'Чеки на стройматериалы', 'Акты выполненных работ', 'Почтовые чеки'].map(p => (
+                    <button
+                      key={p}
+                      onClick={() => setProduct(product === p ? '' : p)}
+                      className={`rounded-full px-4 py-2 text-sm font-500 border transition-colors ${product === p ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}
+                    >{p}</button>
+                  ))}
+                </div>
               </div>
               <div>
                 <label className="mb-1.5 block text-sm font-500 text-foreground">Как с вами связаться?</label>

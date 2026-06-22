@@ -22,6 +22,7 @@ def handler(event: dict, context) -> dict:
     email = body.get('email', '').strip()
     contact = body.get('contact', '').strip()
     city = body.get('city', '').strip()
+    product = body.get('product', '').strip()
 
     if not name or not phone:
         return {
@@ -44,6 +45,8 @@ def handler(event: dict, context) -> dict:
         lines.append(f'Email: {email}')
     if contact:
         lines.append(f'Способ связи: {contact}')
+    if product:
+        lines.append(f'Интересует: {product}')
     if city:
         lines.append(f'Город: {city}')
 
@@ -62,7 +65,8 @@ def handler(event: dict, context) -> dict:
         <tr style="background: #f5f5f5;"><td style="padding: 8px; font-weight: bold;">Телефон:</td><td style="padding: 8px;">{phone}</td></tr>
         {'<tr><td style="padding: 8px; font-weight: bold;">Email:</td><td style="padding: 8px;">' + email + '</td></tr>' if email else ''}
         {'<tr style="background: #f5f5f5;"><td style="padding: 8px; font-weight: bold;">Способ связи:</td><td style="padding: 8px;">' + contact + '</td></tr>' if contact else ''}
-        {'<tr><td style="padding: 8px; font-weight: bold;">Город:</td><td style="padding: 8px;">' + city + '</td></tr>' if city else ''}
+        {'<tr><td style="padding: 8px; font-weight: bold;">Интересует:</td><td style="padding: 8px;"><strong>' + product + '</strong></td></tr>' if product else ''}
+        {'<tr style="background: #f5f5f5;"><td style="padding: 8px; font-weight: bold;">Город:</td><td style="padding: 8px;">' + city + '</td></tr>' if city else ''}
       </table>
     </div>
     """

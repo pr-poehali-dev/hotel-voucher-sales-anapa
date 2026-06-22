@@ -38,6 +38,7 @@ const Index = () => {
   const [email, setEmail] = useState('');
   const [agree, setAgree] = useState(false);
   const [contact, setContact] = useState('');
+  const [product, setProduct] = useState('');
   const [modalItem, setModalItem] = useState<{ name: string; img: string } | null>(null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -50,11 +51,11 @@ const Index = () => {
       const res = await fetch(SEND_ORDER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, email, contact }),
+        body: JSON.stringify({ name, phone, email, contact, product }),
       });
       if (res.ok) {
         setSent(true);
-        setName(''); setPhone(''); setEmail(''); setContact(''); setAgree(false);
+        setName(''); setPhone(''); setEmail(''); setContact(''); setAgree(false); setProduct('');
       } else {
         setSendError('Ошибка отправки. Попробуйте ещё раз.');
       }
@@ -323,6 +324,18 @@ const Index = () => {
               <div>
                 <label className="mb-1.5 block text-sm font-500 text-foreground">Ваш email</label>
                 <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="email@example.com" className="h-11" />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-500 text-foreground">Что вас интересует?</label>
+                <div className="flex flex-wrap gap-2">
+                  {CATALOG.map(c => (
+                    <button
+                      key={c.name}
+                      onClick={() => setProduct(product === c.name ? '' : c.name)}
+                      className={`rounded-full px-4 py-2 text-sm font-500 border transition-colors ${product === c.name ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}
+                    >{c.name}</button>
+                  ))}
+                </div>
               </div>
               <div>
                 <label className="mb-1.5 block text-sm font-500 text-foreground">Как с вами связаться?</label>
