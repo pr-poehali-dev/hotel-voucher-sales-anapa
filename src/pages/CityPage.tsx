@@ -14,7 +14,7 @@ const CITY_OVERRIDES: Record<string, { phone: string; phoneRaw: string; whatsapp
     phoneRaw: '79184641800',
     whatsapp: 'https://wa.me/79184641800',
     telegram: 'https://t.me/+79184641800',
-    heroImg: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/1e9a666e-40be-4a10-b3e7-a17688ac0492.jpg',
+    heroImg: 'https://tvkrasnodar.ru/upload/iblock/0e4/kzaxtopllup1loqf8f69xouysgyoyvt4.jpg',
   },
 };
 
