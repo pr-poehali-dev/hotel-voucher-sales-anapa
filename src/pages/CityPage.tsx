@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { getCityBySlug, CITIES } from '@/data/cities';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,26 +17,7 @@ const CityPage = () => {
   const [agree, setAgree] = useState(false);
   const [contact, setContact] = useState('');
 
-  useEffect(() => {
-    if (!city) return;
-    document.title = `Гостиничные чеки в ${city.caseIn} — купить с подтверждением | ЧекГарант`;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) {
-      desc.setAttribute('content', `Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 12%. Официально, быстро, надёжно. Тел: +7 (999) 006-40-45`);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = `Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 12%. Официально, быстро, надёжно. Тел: +7 (999) 006-40-45`;
-      document.head.appendChild(meta);
-    }
-    const keywords = document.querySelector('meta[name="keywords"]');
-    if (keywords) {
-      keywords.setAttribute('content', `гостиничные чеки ${city.name}, купить гостиничные чеки ${city.name}, чеки для командировки ${city.name}, авансовый отчёт ${city.name}`);
-    }
-    return () => {
-      document.title = 'Гостиничные чеки в Анапе — купить с подтверждением | ЧекГарант';
-    };
-  }, [city]);
+
 
   if (!city) {
     return (
@@ -50,6 +32,12 @@ const CityPage = () => {
 
   return (
     <div className="min-h-screen bg-background font-sans">
+      <Helmet>
+        <title>Гостиничные чеки в {city.caseIn} — купить с подтверждением | ЧекГарант</title>
+        <meta name="description" content={`Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 12%. Официально, быстро, надёжно. Тел: +7 (999) 006-40-45`} />
+        <meta name="keywords" content={`гостиничные чеки ${city.name}, купить гостиничные чеки ${city.name}, чеки для командировки ${city.name}, авансовый отчёт ${city.name}`} />
+        <link rel="canonical" href={`https://chekgarant.online/cities/${city.slug}`} />
+      </Helmet>
 
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground text-sm">
