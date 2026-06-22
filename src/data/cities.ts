@@ -43,6 +43,7 @@ export const CITIES: City[] = [
   { name: 'Москва', slug: 'moscow', caseIn: 'Москве', busStation: 'г. Москва, ш. Щёлковское, 75 (Центральный автовокзал)', mapQuery: 'Центральный+автовокзал+Москва' },
   { name: 'Мурманск', slug: 'murmansk', caseIn: 'Мурманске', busStation: 'г. Мурманск, ул. Коминтерна, 12', mapQuery: 'Автовокзал+Мурманск' },
   { name: 'Набережные Челны', slug: 'naberezhnye-chelny', caseIn: 'Набережных Челнах', busStation: 'г. Набережные Челны, пр-т Мира, 10', mapQuery: 'Автовокзал+Набережные+Челны' },
+  { name: 'Новороссийск', slug: 'novorossiysk', caseIn: 'Новороссийске', busStation: 'г. Новороссийск, ул. Мира, 16', mapQuery: 'Новороссийск+ул.+Мира+16' },
   { name: 'Нижний Новгород', slug: 'nizhny-novgorod', caseIn: 'Нижнем Новгороде', busStation: 'г. Нижний Новгород, ул. Лядова, 1', mapQuery: 'Автовокзал+Нижний+Новгород' },
   { name: 'Новокузнецк', slug: 'novokuznetsk', caseIn: 'Новокузнецке', busStation: 'г. Новокузнецк, пр-т Бардина, 2', mapQuery: 'Автовокзал+Новокузнецк' },
   { name: 'Новосибирск', slug: 'novosibirsk', caseIn: 'Новосибирске', busStation: 'г. Новосибирск, Красный пр-т, 4', mapQuery: 'Автовокзал+Новосибирск' },

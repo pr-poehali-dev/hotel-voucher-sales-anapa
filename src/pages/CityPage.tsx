@@ -6,11 +6,31 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/9c55a72e-8db7-4f0f-9133-153f82ea8a63.jpg';
+const DEFAULT_HERO_IMG = 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/9c55a72e-8db7-4f0f-9133-153f82ea8a63.jpg';
+
+const CITY_OVERRIDES: Record<string, { phone: string; phoneRaw: string; whatsapp: string; telegram: string; heroImg?: string }> = {
+  novorossiysk: {
+    phone: '+7 (918) 464-18-00',
+    phoneRaw: '79184641800',
+    whatsapp: 'https://wa.me/79184641800',
+    telegram: 'https://t.me/+79184641800',
+    heroImg: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/1e9a666e-40be-4a10-b3e7-a17688ac0492.jpg',
+  },
+};
+
+const DEFAULT_CONTACTS = {
+  phone: '+7 (999) 006-40-45',
+  phoneRaw: '79990064045',
+  whatsapp: 'https://wa.me/79990064045',
+  telegram: 'https://t.me/+79990064045',
+};
 
 const CityPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const city = getCityBySlug(slug || '');
+  const override = slug ? CITY_OVERRIDES[slug] : undefined;
+  const contacts = override ? { phone: override.phone, phoneRaw: override.phoneRaw, whatsapp: override.whatsapp, telegram: override.telegram } : DEFAULT_CONTACTS;
+  const HERO_IMG = override?.heroImg || DEFAULT_HERO_IMG;
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -34,7 +54,7 @@ const CityPage = () => {
     <div className="min-h-screen bg-background font-sans">
       <Helmet>
         <title>Гостиничные чеки в {city.caseIn} — купить с подтверждением | ЧекГарант</title>
-        <meta name="description" content={`Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 12%. Официально, быстро, надёжно. Тел: +7 (999) 006-40-45`} />
+        <meta name="description" content={`Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 10%. Официально, быстро, надёжно. Тел: ${contacts.phone}`} />
         <meta name="keywords" content={`гостиничные чеки ${city.name}, купить гостиничные чеки ${city.name}, чеки для командировки ${city.name}, авансовый отчёт ${city.name}`} />
         <link rel="canonical" href={`https://chekgarant.online/cities/${city.slug}`} />
       </Helmet>
@@ -48,11 +68,11 @@ const CityPage = () => {
             </a>
           </div>
           <div className="flex items-center gap-3">
-            <a href="tel:+79990064045" className="font-600 text-accent">+7 (999) 006-40-45</a>
-            <a href="https://wa.me/79990064045" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-green-500/50 px-3 py-1 text-green-400 hover:bg-green-500 hover:text-white transition-colors text-xs font-500">
+            <a href={`tel:+${contacts.phoneRaw}`} className="font-600 text-accent">{contacts.phone}</a>
+            <a href={contacts.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-green-500/50 px-3 py-1 text-green-400 hover:bg-green-500 hover:text-white transition-colors text-xs font-500">
               <Icon name="MessageCircle" size={13} /> WhatsApp
             </a>
-            <a href="https://t.me/+79990064045" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-sky-400/50 px-3 py-1 text-sky-400 hover:bg-sky-500 hover:text-white transition-colors text-xs font-500">
+            <a href={contacts.telegram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded border border-sky-400/50 px-3 py-1 text-sky-400 hover:bg-sky-500 hover:text-white transition-colors text-xs font-500">
               <Icon name="Send" size={13} /> Telegram
             </a>
           </div>
@@ -77,8 +97,8 @@ const CityPage = () => {
             <Link to="/#about" className="text-muted-foreground hover:text-primary transition-colors font-500">О нас</Link>
             <Link to="/#contacts" className="text-muted-foreground hover:text-primary transition-colors font-500">Контакты</Link>
           </nav>
-          <a href="tel:+79990064045" className="hidden md:flex items-center gap-2 font-display font-600 text-primary hover:text-accent transition-colors">
-            <Icon name="Phone" size={16} />+7 (999) 006-40-45
+          <a href={`tel:+${contacts.phoneRaw}`} className="hidden md:flex items-center gap-2 font-display font-600 text-primary hover:text-accent transition-colors">
+            <Icon name="Phone" size={16} />{contacts.phone}
           </a>
         </div>
       </header>
@@ -103,7 +123,7 @@ const CityPage = () => {
             <div className="mt-6 flex flex-wrap gap-4 text-white/90 text-base">
               <div className="flex items-center gap-2 bg-white/10 rounded px-4 py-2">
                 <Icon name="Percent" size={18} className="text-accent" />
-                <span className="font-bold text-yellow-400 text-xl">Наша комиссия 12% от суммы чека</span>
+                <span className="font-bold text-yellow-400 text-xl">Наша комиссия 10% от суммы чека</span>
               </div>
             </div>
             <p className="mt-6 max-w-xl text-white/75 leading-relaxed text-lg">
@@ -114,7 +134,7 @@ const CityPage = () => {
                 <a href="#order">Заказать чеки</a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white" asChild>
-                <a href="tel:+79990064045">Позвонить</a>
+                <a href={`tel:+${contacts.phoneRaw}`}>Позвонить</a>
               </Button>
             </div>
           </div>
@@ -142,7 +162,7 @@ const CityPage = () => {
 
             <div className="rounded-lg border border-accent/30 bg-accent/5 p-6">
               <div className="font-display text-lg font-700 text-primary mb-1">Стоимость</div>
-              <div className="text-3xl font-display font-700 text-accent">12% <span className="text-base text-muted-foreground font-400">от суммы чека</span></div>
+              <div className="text-3xl font-display font-700 text-accent">10% <span className="text-base text-muted-foreground font-400">от суммы чека</span></div>
               <Button className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
                 <a href="#order">Купить</a>
               </Button>
@@ -162,8 +182,8 @@ const CityPage = () => {
             <div className="rounded-lg border border-border bg-card p-5 shadow-sm">
               <div className="font-display text-sm font-600 uppercase tracking-wider text-muted-foreground mb-3">Контакты</div>
               <div className="space-y-3 text-sm">
-                <a href="tel:+79990064045" className="flex items-center gap-2 text-primary font-600 hover:text-accent transition-colors">
-                  <Icon name="Phone" size={16} className="text-accent" />+7 (999) 006-40-45
+                <a href={`tel:+${contacts.phoneRaw}`} className="flex items-center gap-2 text-primary font-600 hover:text-accent transition-colors">
+                  <Icon name="Phone" size={16} className="text-accent" />{contacts.phone}
                 </a>
                 <a href="mailto:a9990064045@mail.ru" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                   <Icon name="Mail" size={16} className="text-accent" />a9990064045@mail.ru
