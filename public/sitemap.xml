@@ -186,6 +186,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://chekgarant.online/cities/novorossiysk</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://chekgarant.online/cities/nizhny-novgorod</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
