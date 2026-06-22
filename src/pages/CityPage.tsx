@@ -14,7 +14,7 @@ const CITY_OVERRIDES: Record<string, { phone: string; phoneRaw: string; whatsapp
     phoneRaw: '79184641800',
     whatsapp: 'https://wa.me/79184641800',
     telegram: 'https://t.me/+79184641800',
-    heroImg: 'https://yug-24.ru/uploads/posts/2023-10/1697481084_vechernij-novorossijsk-k45e6ng7sh-8.jpg',
+    heroImg: 'https://gorod-novoross.ru/foto/thumbs/1201.jpg',
   },
 };
 
