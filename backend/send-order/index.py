@@ -1,5 +1,5 @@
 import json
-import os
+import os  # noqa
 
 import smtplib
 from email.mime.text import MIMEText
