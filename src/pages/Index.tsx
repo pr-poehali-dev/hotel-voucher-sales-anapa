@@ -30,6 +30,8 @@ const CATALOG = [
   { name: 'Почтовые чеки', img: 'https://cdn.poehali.dev/projects/5801a4f3-870b-4b77-9d1b-c82c5628d209/files/cd97999b-3b1b-42ce-8ce3-5f5263c019ad.jpg' },
 ];
 
+const SEND_ORDER_URL = 'https://functions.poehali.dev/f7bc5056-5d3a-4553-8128-4067e8082b88';
+
 const Index = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -37,6 +39,31 @@ const Index = () => {
   const [agree, setAgree] = useState(false);
   const [contact, setContact] = useState('');
   const [modalItem, setModalItem] = useState<{ name: string; img: string } | null>(null);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [sendError, setSendError] = useState('');
+
+  const handleSubmit = async () => {
+    setSending(true);
+    setSendError('');
+    try {
+      const res = await fetch(SEND_ORDER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, contact }),
+      });
+      if (res.ok) {
+        setSent(true);
+        setName(''); setPhone(''); setEmail(''); setContact(''); setAgree(false);
+      } else {
+        setSendError('Ошибка отправки. Попробуйте ещё раз.');
+      }
+    } catch {
+      setSendError('Ошибка сети. Попробуйте ещё раз.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -313,8 +340,22 @@ const Index = () => {
                 <input type="checkbox" checked={agree} onChange={e => setAgree(e.target.checked)} className="mt-1 h-4 w-4 accent-primary" />
                 <span className="text-sm text-muted-foreground">Согласие на обработку персональных данных <span className="text-destructive">*</span></span>
               </label>
-              <Button disabled={!agree || !name || !phone} className="h-12 w-full bg-accent text-accent-foreground hover:bg-accent/90 font-600 disabled:opacity-50">
-                Отправить
+              {sent && (
+                <div className="rounded-lg bg-green-50 border border-green-200 p-4 text-center text-green-700 font-500">
+                  Заявка отправлена! Мы свяжемся с вами в течение 15 минут.
+                </div>
+              )}
+              {sendError && (
+                <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-center text-red-600 text-sm">
+                  {sendError}
+                </div>
+              )}
+              <Button
+                disabled={!agree || !name || !phone || sending || sent}
+                onClick={handleSubmit}
+                className="h-12 w-full bg-accent text-accent-foreground hover:bg-accent/90 font-600 disabled:opacity-50"
+              >
+                {sending ? 'Отправка...' : sent ? 'Отправлено!' : 'Отправить'}
               </Button>
             </div>
           </div>
