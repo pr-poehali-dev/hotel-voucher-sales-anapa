@@ -69,6 +69,7 @@ export const CITIES: City[] = [
   { name: 'Тверь', slug: 'tver', caseIn: 'Твери', busStation: 'г. Тверь, ул. Коминтерна, 2', mapQuery: 'Автовокзал+Тверь' },
   { name: 'Тольятти', slug: 'tolyatti', caseIn: 'Тольятти', busStation: 'г. Тольятти, Южное шоссе, 3', mapQuery: 'Автовокзал+Тольятти' },
   { name: 'Томск', slug: 'tomsk', caseIn: 'Томске', busStation: 'г. Томск, пер. Плеханова, 4', mapQuery: 'Автовокзал+Томск' },
+  { name: 'Туапсе', slug: 'tuapse', caseIn: 'Туапсе', busStation: 'г. Туапсе, ул. Победы, 14', mapQuery: 'Автовокзал+Туапсе' },
   { name: 'Тула', slug: 'tula', caseIn: 'Туле', busStation: 'г. Тула, Московский вокзал, пл. Восстания, 1', mapQuery: 'Автовокзал+Тула' },
   { name: 'Тюмень', slug: 'tyumen', caseIn: 'Тюмени', busStation: 'г. Тюмень, ул. Привокзальная, 1', mapQuery: 'Автовокзал+Тюмень' },
   { name: 'Улан-Удэ', slug: 'ulan-ude', caseIn: 'Улан-Удэ', busStation: 'г. Улан-Удэ, ул. Советская, 1', mapQuery: 'Автовокзал+Улан-Удэ' },
