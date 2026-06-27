@@ -23,6 +23,7 @@ export const CITIES: City[] = [
   { name: 'Волгоград', slug: 'volgograd', caseIn: 'Волгограде', busStation: 'г. Волгоград, ул. Комсомольская, 7', mapQuery: 'Автовокзал+Волгоград' },
   { name: 'Вологда', slug: 'vologda', caseIn: 'Вологде', busStation: 'г. Вологда, ул. Мира, 42', mapQuery: 'Автовокзал+Вологда' },
   { name: 'Воронеж', slug: 'voronezh', caseIn: 'Воронеже', busStation: 'г. Воронеж, Московский пр-т, 17', mapQuery: 'Автовокзал+Воронеж' },
+  { name: 'Геленджик', slug: 'gelendzhik', caseIn: 'Геленджике', busStation: 'г. Геленджик, ул. Маячная, 1', mapQuery: 'Автовокзал+Геленджик' },
   { name: 'Грозный', slug: 'grozny', caseIn: 'Грозном', busStation: 'г. Грозный, пр-т Кадырова, 101', mapQuery: 'Автовокзал+Грозный' },
   { name: 'Екатеринбург', slug: 'yekaterinburg', caseIn: 'Екатеринбурге', busStation: 'г. Екатеринбург, ул. 8 Марта, 145', mapQuery: 'Автовокзал+Екатеринбург' },
   { name: 'Иваново', slug: 'ivanovo', caseIn: 'Иванове', busStation: 'г. Иваново, ул. Вокзальная, 1', mapQuery: 'Автовокзал+Иваново' },

@@ -264,6 +264,39 @@ const CityPage = () => {
         </div>
       </section>
 
+      {/* Reviews — only for Gelendzhik */}
+      {slug === 'gelendzhik' && (
+        <section className="py-14 border-t border-border">
+          <div className="container">
+            <div className="mb-8 text-center">
+              <span className="font-display text-sm font-600 uppercase tracking-widest text-accent">Отзывы клиентов</span>
+              <h2 className="mt-2 font-display text-3xl font-700 uppercase text-primary">Что говорят о нас в Геленджике</h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { name: 'Андрей К.', date: 'Март 2026', text: 'Очень оперативно сделали чеки для командировки. Всё прошло проверку в бухгалтерии без вопросов. Рекомендую!' },
+                { name: 'Наталья В.', date: 'Апрель 2026', text: 'Обращалась уже второй раз. Документы готовы за несколько часов, качество отличное. Спасибо за профессионализм!' },
+                { name: 'Сергей М.', date: 'Май 2026', text: 'Быстро, чётко, без лишних вопросов. Чеки приняли в отделе кадров без замечаний. Сервис на высоте!' },
+                { name: 'Ольга Д.', date: 'Июнь 2026', text: 'Нашла через интернет, не пожалела. Менеджер всё объяснил, сделали в срок. Цена за 10% от суммы — честно и выгодно.' },
+              ].map((r) => (
+                <div key={r.name} className="rounded-xl border border-border bg-card p-6 shadow-sm flex flex-col gap-3">
+                  <div className="flex items-center gap-1">
+                    {[1,2,3,4,5].map(i => (
+                      <Icon key={i} name="Star" size={16} className="text-accent fill-accent" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1">"{r.text}"</p>
+                  <div className="border-t border-border pt-3 flex items-center justify-between">
+                    <span className="font-600 text-sm text-foreground">{r.name}</span>
+                    <span className="text-xs text-muted-foreground">{r.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Order form */}
       <section id="order" className="py-14 bg-secondary/30">
         <div className="container max-w-2xl">
