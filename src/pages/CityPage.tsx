@@ -40,6 +40,11 @@ const CityPage = () => {
   const [product, setProduct] = useState('');
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const [reviewName, setReviewName] = useState('');
+  const [reviewText, setReviewText] = useState('');
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewSent, setReviewSent] = useState(false);
+  const [reviewSending, setReviewSending] = useState(false);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [sendError, setSendError] = useState('');
@@ -334,6 +339,64 @@ const CityPage = () => {
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Leave a review form */}
+                  <div className="mt-8 rounded-xl border border-accent/30 bg-accent/5 p-6">
+                    <h4 className="font-display text-lg font-700 text-primary mb-4">Оставить отзыв</h4>
+                    {reviewSent ? (
+                      <div className="flex flex-col items-center gap-3 py-4 text-center">
+                        <Icon name="CheckCircle2" size={40} className="text-green-500" />
+                        <p className="font-600 text-foreground">Спасибо за ваш отзыв!</p>
+                        <p className="text-sm text-muted-foreground">Мы ценим ваше мнение</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        <div>
+                          <label className="mb-1.5 block text-sm font-500 text-foreground">Ваше имя</label>
+                          <Input value={reviewName} onChange={e => setReviewName(e.target.value)} placeholder="Иван И." className="h-10" />
+                        </div>
+                        <div>
+                          <label className="mb-1.5 block text-sm font-500 text-foreground">Оценка</label>
+                          <div className="flex gap-1">
+                            {[1,2,3,4,5].map(i => (
+                              <button key={i} type="button" onClick={() => setReviewRating(i)} className="transition-transform hover:scale-110">
+                                <Icon name="Star" size={24} className={i <= reviewRating ? 'text-accent fill-accent' : 'text-muted-foreground'} />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <label className="mb-1.5 block text-sm font-500 text-foreground">Ваш отзыв</label>
+                          <textarea
+                            value={reviewText}
+                            onChange={e => setReviewText(e.target.value)}
+                            placeholder="Расскажите о вашем опыте..."
+                            rows={3}
+                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+                          />
+                        </div>
+                        <Button
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                          disabled={reviewSending || !reviewName.trim() || !reviewText.trim()}
+                          onClick={async () => {
+                            setReviewSending(true);
+                            try {
+                              await fetch('https://functions.poehali.dev/f7bc5056-5d3a-4553-8128-4067e8082b88', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ name: reviewName, review: reviewText, rating: reviewRating, city: city?.name || '', type: 'review' }),
+                              });
+                            } finally {
+                              setReviewSending(false);
+                              setReviewSent(true);
+                            }
+                          }}
+                        >
+                          {reviewSending ? 'Отправляем...' : 'Отправить отзыв'}
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
