@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCityBySlug, CITIES } from '@/data/cities';
+import { CITY_SEO } from '@/data/citySeo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
@@ -77,19 +78,9 @@ const CityPage = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
       <Helmet>
-        <title>
-          {slug === 'gelendzhik'
-            ? 'Гостиничные чеки в Геленджик — отчетные документы за проживание для командировок | ЧекГарант'
-            : `Гостиничные чеки в ${city.caseIn} — купить с подтверждением | ЧекГарант`}
-        </title>
-        <meta name="description" content={slug === 'gelendzhik'
-          ? 'Гостиничные чеки в Геленджик — отчетные документы за проживание для командировок в Геленджике. Оформим полный пакет документов о проживании быстро и без лишних вопросов. Выписываем гостиничные чеки и счета о проживании, договор. Онлайн касса чек с QR-кодом.'
-          : `Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 10%. Официально, быстро, надёжно. Тел: ${contacts.phone}`}
-        />
-        <meta name="keywords" content={slug === 'gelendzhik'
-          ? 'гостиничные чеки Геленджик, отчетные документы за проживание Геленджик, чеки для командировки Геленджик, счет о проживании Геленджик, чек с QR-кодом Геленджик, авансовый отчёт Геленджик'
-          : `гостиничные чеки ${city.name}, купить гостиничные чеки ${city.name}, чеки для командировки ${city.name}, авансовый отчёт ${city.name}`}
-        />
+        <title>{slug && CITY_SEO[slug] ? CITY_SEO[slug].title : `Гостиничные чеки в ${city.caseIn} — купить с подтверждением | ЧекГарант`}</title>
+        <meta name="description" content={slug && CITY_SEO[slug] ? CITY_SEO[slug].description : `Купить гостиничные чеки в ${city.caseIn} с подтверждением для авансового отчёта о командировке. Комиссия 10%. Официально, быстро, надёжно. Тел: ${contacts.phone}`} />
+        <meta name="keywords" content={slug && CITY_SEO[slug] ? CITY_SEO[slug].keywords : `гостиничные чеки ${city.name}, купить гостиничные чеки ${city.name}, чеки для командировки ${city.name}, авансовый отчёт ${city.name}`} />
         <link rel="canonical" href={`https://chekgarant.online/cities/${city.slug}`} />
       </Helmet>
 
