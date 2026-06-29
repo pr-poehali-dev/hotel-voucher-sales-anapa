@@ -1,10 +1,23 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { CITIES } from '@/data/cities';
 import { CATALOG } from '@/components/home/HomeCatalog';
 
-const HomeFooter = () => (
+const HomeFooter = () => {
+  useEffect(() => {
+    const date = new Date();
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    (window as Record<string, unknown>).KUPI_COUNTER_ID = 3393092;
+    script.src = (document.location.protocol === 'https:' ? 'https:' : 'http:') +
+      '//counter.vkupiprodai.ru/js/counter.js?' + date.getFullYear() + date.getMonth() + date.getDate();
+    document.body.appendChild(script);
+    return () => { document.body.removeChild(script); };
+  }, []);
+
+  return (
   <>
     {/* Map */}
     <section className="border-t border-border py-14">
@@ -101,6 +114,7 @@ const HomeFooter = () => (
             <span className="font-display font-600 uppercase tracking-wide text-white/70">ЧекГарант Анапа</span>
           </div>
           <span>© 2026 Действительные чеки в Анапе</span>
+          <a href="https://krasnodar.vkupiprodai.ru/anapa_all/" className="text-white/30 hover:text-white/60 transition-colors text-xs">Объявления в Анапе</a>
         </div>
       </div>
     </footer>
@@ -121,6 +135,7 @@ const HomeFooter = () => (
       </a>
     </div>
   </>
-);
+  );
+};
 
 export default HomeFooter;
